@@ -40,7 +40,14 @@ main h2{
     position: relative;
     top: 130px;
     left: 450px;
-    font-size: 20px;
+    font-size: 18px;
     color: rgb(145, 86, 160);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+
+#myChart{
+    position: relative;
+    top: 160px ;
+    left: 20px;
 }
