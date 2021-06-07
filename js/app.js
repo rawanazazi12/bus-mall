@@ -11,6 +11,7 @@ let rightImageIndex;
 let productNames=[];
 let votes=[];
 let shown=[];
+let price=true;
 
 function Product(name, source, timesShown) {
   this.name = name;
@@ -20,6 +21,9 @@ function Product(name, source, timesShown) {
   this.votes = 0;
   Product.allProducts.push(this);
   productNames.push(this.name);
+  let price='rawan';
+  this.price=4
+
 }
 
 Product.allProducts = [];
@@ -149,7 +153,7 @@ function chart() {
         label: '# of Showns',
         data: shown,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
+          'rgba(25, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
           'rgba(255, 206, 86, 0.2)',
           'rgba(75, 192, 192, 0.2)',
@@ -179,5 +183,3 @@ function chart() {
   });
 
 }
-
-
