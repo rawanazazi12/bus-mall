@@ -11,7 +11,6 @@ let rightImageIndex;
 let productNames=[];
 let votes=[];
 let shown=[];
-let price=true;
 
 function Product(name, source, timesShown) {
   this.name = name;
@@ -21,9 +20,6 @@ function Product(name, source, timesShown) {
   this.votes = 0;
   Product.allProducts.push(this);
   productNames.push(this.name);
-  let price='rawan';
-  this.price=4
-
 }
 
 Product.allProducts = [];
@@ -108,9 +104,18 @@ function handleUserClick(event) {
       votes.push(Product.allProducts[i].votes);
       shown.push(Product.allProducts[i].shown);
     }
+    updateStorage();
     chart();
   }
 }
+
+function updateStorage(){
+  let storageArr=JSON.stringify(Product.allProducts);
+  localStorage.setItem('products',storageArr);
+  // console.log(storageArr);
+  // console.log(Product.allProducts);
+}
+
 
 function showingResults() {
   let list = document.getElementById('results-list');
@@ -122,7 +127,10 @@ function showingResults() {
   button.removeEventListener('click', showingResults);
 }
 
-function chart() {
+
+
+getProductVotes();
+function chart(){
   let ctx = document.getElementById('myChart');
   let myChart = new Chart(ctx, {
     type: 'bar',
@@ -153,20 +161,20 @@ function chart() {
         label: '# of Showns',
         data: shown,
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
           'rgba(255, 99, 132, 1)',
           'rgba(54, 162, 235, 1)',
           'rgba(255, 206, 86, 1)',
           'rgba(75, 192, 192, 1)',
           'rgba(153, 102, 255, 1)',
           'rgba(255, 159, 64, 1)'
+        ],
+        borderColor: [
+          'rgba(25, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
         ],
         borderWidth: 1
       }]
@@ -179,7 +187,17 @@ function chart() {
       }
     }
 
-
   });
-
 }
+
+
+function getProductVotes(){
+  let data=localStorage.getItem('products');
+  console.log(data);
+  let votesData=JSON.parse(data);
+  console.log(votesData);
+  if(votesData!==null){
+    Product.allProducts=votesData;
+  }
+}
+
